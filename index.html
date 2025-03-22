@@ -15,8 +15,18 @@
             position: relative;
             background: white;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            margin: 0 auto;
         }
         
+        .screen {
+            display: none;
+            height: 100%;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
         .story-circle {
             width: 68px;
             height: 68px;
@@ -59,6 +69,10 @@
             color: #6b7280;
             transition: all 0.2s ease;
             position: relative;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0.5rem;
         }
 
         .nav-item:active {
@@ -128,437 +142,427 @@
             color: #6b7280;
             background-color: #f9fafb;
         }
+
+        /* Screen transition animation */
+        .screen {
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .screen.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen p-8 flex gap-8">
-    <!-- News Feed Page -->
+<body class="bg-gray-100 min-h-screen p-8">
     <div class="device-frame">
-        <div class="h-full overflow-y-auto bg-white">
-            <!-- Header -->
-            <div class="px-6 pt-8 pb-6">
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-heart text-2xl brand-gradient"></i>
-                    <h1 class="text-2xl font-bold">ParentHub</h1>
-                </div>
-            </div>
-            
-            <!-- Stories -->
-            <div class="px-6 flex gap-4 overflow-x-auto pb-4">
-                <div class="flex flex-col items-center">
-                    <div class="story-circle flex items-center justify-center bg-gray-50">
-                        <div class="text-2xl text-gray-400">+</div>
+        <!-- News Feed Screen -->
+        <div class="screen active" id="home-screen">
+            <div class="h-full overflow-y-auto bg-white">
+                <!-- Header -->
+                <div class="px-6 pt-8 pb-6">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-heart text-2xl brand-gradient"></i>
+                        <h1 class="text-2xl font-bold">ParentHub</h1>
                     </div>
-                    <span class="text-xs mt-2">Add Story</span>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="story-circle">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop" class="w-full h-full rounded-full object-cover" alt="Story">
-                    </div>
-                    <span class="text-xs mt-2">Sarah M.</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="story-circle">
-                        <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=150&h=150&fit=crop" class="w-full h-full rounded-full object-cover" alt="Story">
-                    </div>
-                    <span class="text-xs mt-2">John D.</span>
-                </div>
-            </div>
-
-            <!-- Feed Content -->
-            <div class="px-6 py-4 space-y-6">
-                <!-- Post 1 -->
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop" class="w-8 h-8 rounded-full" alt="Profile">
-                        <div>
-                            <h3 class="font-semibold">Emma Wilson</h3>
-                            <p class="text-sm text-gray-500">2 hours ago</p>
+                
+                <!-- Stories -->
+                <div class="px-6 flex gap-4 overflow-x-auto pb-4">
+                    <div class="flex flex-col items-center">
+                        <div class="story-circle flex items-center justify-center bg-gray-50">
+                            <div class="text-2xl text-gray-400">+</div>
                         </div>
+                        <span class="text-xs mt-2">Add Story</span>
                     </div>
-                    <p>Just enrolled Tommy in his first swimming class! Any tips from experienced parents? 🏊‍♂️ #ParentingJourney</p>
-                    <img src="https://images.unsplash.com/photo-1600965962102-9d260a71890d?w=600&h=400&fit=crop" class="w-full rounded-lg" alt="Post image">
-                    <div class="flex items-center gap-4">
-                        <button class="flex items-center gap-2">
-                            <i class="far fa-heart"></i>
-                            <span>245</span>
-                        </button>
-                        <button class="flex items-center gap-2">
-                            <i class="far fa-comment"></i>
-                            <span>18</span>
-                        </button>
-                        <button class="ml-auto">
-                            <i class="far fa-bookmark"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Post 2 -->
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=80&h=80&fit=crop" class="w-8 h-8 rounded-full" alt="Profile">
-                        <div>
-                            <h3 class="font-semibold">Parent Hub Community</h3>
-                            <p class="text-sm text-gray-500">5 hours ago</p>
+                    <div class="flex flex-col items-center">
+                        <div class="story-circle">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop" class="w-full h-full rounded-full object-cover" alt="Story">
                         </div>
+                        <span class="text-xs mt-2">Sarah M.</span>
                     </div>
-                    <p>🎉 Upcoming Event: Family Fun Day at Central Park! Join us this Saturday for games, food, and amazing activities. RSVP now!</p>
+                    <div class="flex flex-col items-center">
+                        <div class="story-circle">
+                            <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=150&h=150&fit=crop" class="w-full h-full rounded-full object-cover" alt="Story">
+                        </div>
+                        <span class="text-xs mt-2">John D.</span>
+                    </div>
                 </div>
-            </div>
-            <!-- Bottom Navigation -->
-            <div class="bottom-nav">
-                <button class="nav-item active">
-                    <i class="fas fa-home text-xl"></i>
-                    <span class="text-xs">Home</span>
-                </button>
-                <button class="nav-item">
-                    <i class="far fa-calendar text-xl"></i>
-                    <span class="text-xs">Events</span>
-                </button>
-                <button class="nav-item">
-                    <i class="fas fa-plus-circle text-xl"></i>
-                    <span class="text-xs">Post</span>
-                </button>
-                <button class="nav-item">
-                    <i class="far fa-user text-xl"></i>
-                    <span class="text-xs">Profile</span>
-                </button>
-            </div>
-        </div>
-    </div>
 
-    <!-- Birthday Event Page -->
-    <div class="device-frame">
-        <div class="h-full overflow-y-auto bg-white">
-            <!-- Header -->
-            <div class="px-6 pt-8 pb-6 flex items-center">
-                <button class="rounded-full w-10 h-10 flex items-center justify-center bg-white shadow">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <span class="font-semibold ml-4">Events</span>
-            </div>
-
-            <!-- Event Content -->
-            <div class="px-6">
-                <div class="space-y-6">
-                    <!-- Hero Image -->
-                    <div class="relative -mx-6 h-48">
-                        <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800&h=400&fit=crop" class="w-full h-full object-cover" alt="Birthday party decorations">
-                    </div>
-
-                    <div class="pt-6">
-                        <h1 class="text-3xl font-bold mb-2">Sophie's 5th Birthday Party</h1>
-                        <p class="text-gray-600">Hosted by Sarah Johnson</p>
-                    </div>
-
+                <!-- Feed Content -->
+                <div class="px-6 py-4 space-y-6">
+                    <!-- Post 1 -->
                     <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center">
-                                <i class="far fa-calendar text-pink-500"></i>
-                            </div>
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop" class="w-8 h-8 rounded-full" alt="Profile">
                             <div>
-                                <p class="font-semibold">Saturday, July 15th</p>
-                                <p class="text-gray-500">2:00 PM - 5:00 PM</p>
+                                <h3 class="font-semibold">Emma Wilson</h3>
+                                <p class="text-sm text-gray-500">2 hours ago</p>
                             </div>
                         </div>
-
+                        <p>Just enrolled Tommy in his first swimming class! Any tips from experienced parents? 🏊‍♂️ #ParentingJourney</p>
+                        <img src="https://images.unsplash.com/photo-1600965962102-9d260a71890d?w=600&h=400&fit=crop" class="w-full rounded-lg" alt="Post image">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt text-blue-500"></i>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Sunshine Party Center</p>
-                                <p class="text-gray-500">123 Rainbow Lane, Springfield</p>
-                            </div>
+                            <button class="flex items-center gap-2">
+                                <i class="far fa-heart"></i>
+                                <span>245</span>
+                            </button>
+                            <button class="flex items-center gap-2">
+                                <i class="far fa-comment"></i>
+                                <span>18</span>
+                            </button>
+                            <button class="ml-auto">
+                                <i class="far fa-bookmark"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <button class="w-full bg-pink-500 text-white py-4 rounded-2xl font-semibold text-lg">
-                        RSVP Now
-                    </button>
-
-                    <div>
-                        <h3 class="font-semibold mb-3">About the Event</h3>
-                        <p class="text-gray-600">Join us for a magical princess-themed celebration! We'll have face painting, balloon artists, cake decorating, and lots of fun games. All parents are welcome to stay and join the festivities.</p>
-                    </div>
-
-                    <!-- Activity Preview -->
-                    <div>
-                        <h3 class="font-semibold mb-3">What to Expect</h3>
-                        <div class="grid grid-cols-2 gap-2">
-                            <div class="relative rounded-xl overflow-hidden h-24">
-                                <img src="https://images.unsplash.com/photo-1576344333162-f83e5e18902e?w=300&h=200&fit=crop" class="w-full h-full object-cover" alt="Face painting">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-2">
-                                    <span class="text-white text-sm font-medium">Face Painting</span>
-                                </div>
-                            </div>
-                            <div class="relative rounded-xl overflow-hidden h-24">
-                                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&h=200&fit=crop" class="w-full h-full object-cover" alt="Balloon art">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-2">
-                                    <span class="text-white text-sm font-medium">Balloon Art</span>
-                                </div>
-                            </div>
-                            <div class="relative rounded-xl overflow-hidden h-24">
-                                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=300&h=200&fit=crop" class="w-full h-full object-cover" alt="Princess cake">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-2">
-                                    <span class="text-white text-sm font-medium">Birthday Cake</span>
-                                </div>
-                            </div>
-                            <div class="relative rounded-xl overflow-hidden h-24">
-                                <img src="https://images.unsplash.com/photo-1502035618526-6b2f1f5bca1b?w=300&h=200&fit=crop" class="w-full h-full object-cover" alt="Party games">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-2">
-                                    <span class="text-white text-sm font-medium">Party Games</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="font-semibold mb-3">Gift Ideas</h3>
-                        <div class="bg-gray-50 rounded-xl p-4">
-                            <p class="text-gray-600 mb-2">Sophie loves:</p>
-                            <ul class="list-disc list-inside text-gray-600 space-y-1">
-                                <li>Art supplies and craft kits</li>
-                                <li>Princess-themed toys and dress-up items</li>
-                                <li>Children's books (especially fairy tales)</li>
-                                <li>Educational games and puzzles</li>
-                            </ul>
-                            <p class="text-sm text-gray-500 mt-3">Note: Gift-giving is optional! Your presence is the best present.</p>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="font-semibold mb-3">Important Notes</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center">
-                                    <i class="fas fa-utensils text-green-500"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Dietary Options Available</p>
-                                    <p class="text-sm text-gray-500">Gluten-free and nut-free options will be served</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center">
-                                    <i class="fas fa-camera text-purple-500"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Photography</p>
-                                    <p class="text-sm text-gray-500">Professional photographer will be present</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center">
-                                    <i class="fas fa-tshirt text-yellow-500"></i>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Dress Code</p>
-                                    <p class="text-sm text-gray-500">Princess/fairy tale themed attire encouraged!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="font-semibold mb-3">Attending Parents</h3>
-                        <div class="flex -space-x-2">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop" class="w-8 h-8 rounded-full border-2 border-white" alt="Attendee">
-                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&h=80&fit=crop" class="w-8 h-8 rounded-full border-2 border-white" alt="Attendee">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop" class="w-8 h-8 rounded-full border-2 border-white" alt="Attendee">
-                            <div class="w-8 h-8 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs">+12</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Bottom Navigation -->
-            <div class="bottom-nav">
-                <button class="nav-item">
-                    <i class="fas fa-home text-xl"></i>
-                    <span class="text-xs">Home</span>
-                </button>
-                <button class="nav-item active">
-                    <i class="far fa-calendar text-xl"></i>
-                    <span class="text-xs">Events</span>
-                </button>
-                <button class="nav-item">
-                    <i class="fas fa-plus-circle text-xl"></i>
-                    <span class="text-xs">Post</span>
-                </button>
-                <button class="nav-item">
-                    <i class="far fa-user text-xl"></i>
-                    <span class="text-xs">Profile</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Post Page -->
-    <div class="device-frame">
-        <div class="h-full overflow-y-auto bg-white">
-            <!-- Header -->
-            <div class="px-6 pt-8 pb-6 flex items-center">
-                <button class="rounded-full w-10 h-10 flex items-center justify-center bg-white shadow">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <span class="font-semibold ml-4">Create Post</span>
-            </div>
-
-            <!-- Post Content -->
-            <div class="px-6">
-                <div class="space-y-6">
-                    <!-- User Info -->
-                    <div class="flex items-center gap-3">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop" class="w-10 h-10 rounded-full" alt="Profile">
-                        <div>
-                            <h3 class="font-semibold">Emma Wilson</h3>
-                            <p class="text-sm text-gray-500">Public post</p>
-                        </div>
-                    </div>
-
-                    <!-- Text Input -->
+                    <!-- Post 2 -->
                     <div class="space-y-4">
-                        <textarea class="w-full h-32 p-4 rounded-xl bg-gray-50 resize-none text-gray-700" placeholder="What's on your mind?"></textarea>
-                        
-                        <!-- Action Buttons -->
-                        <div class="grid grid-cols-3 gap-3">
-                            <button class="aspect-square rounded-xl bg-gray-50 flex flex-col items-center justify-center gap-2 p-4">
-                                <i class="fas fa-image text-pink-500 text-xl"></i>
-                                <span class="text-sm text-gray-600">Add Photos</span>
-                            </button>
-                            <button class="aspect-square rounded-xl bg-gray-50 flex flex-col items-center justify-center gap-2 p-4">
-                                <i class="fas fa-video text-pink-500 text-xl"></i>
-                                <span class="text-sm text-gray-600">Add Video</span>
-                            </button>
-                            <button class="aspect-square rounded-xl bg-gray-50 flex flex-col items-center justify-center gap-2 p-4">
-                                <i class="fas fa-map-marker-alt text-pink-500 text-xl"></i>
-                                <span class="text-sm text-gray-600">Location</span>
-                            </button>
-                        </div>
-
-                        <!-- Selected Media Preview -->
-                        <div class="border-2 border-dashed border-gray-200 rounded-xl p-4 hidden">
-                            <div class="grid grid-cols-3 gap-2">
-                                <!-- Media previews will be added here -->
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=80&h=80&fit=crop" class="w-8 h-8 rounded-full" alt="Profile">
+                            <div>
+                                <h3 class="font-semibold">Parent Hub Community</h3>
+                                <p class="text-sm text-gray-500">5 hours ago</p>
                             </div>
                         </div>
+                        <p>🎉 Upcoming Event: Family Fun Day at Central Park! Join us this Saturday for games, food, and amazing activities. RSVP now!</p>
                     </div>
-
-                    <!-- Post Button -->
-                    <button class="w-full bg-pink-500 text-white py-4 rounded-2xl font-semibold text-lg">
-                        Post
-                    </button>
                 </div>
             </div>
-            <!-- Bottom Navigation -->
-            <div class="bottom-nav">
-                <button class="nav-item">
-                    <i class="fas fa-home text-xl"></i>
-                    <span class="text-xs">Home</span>
-                </button>
-                <button class="nav-item">
-                    <i class="far fa-calendar text-xl"></i>
-                    <span class="text-xs">Events</span>
-                </button>
-                <button class="nav-item active">
-                    <i class="fas fa-plus-circle text-xl"></i>
-                    <span class="text-xs">Post</span>
-                </button>
-                <button class="nav-item">
-                    <i class="far fa-user text-xl"></i>
-                    <span class="text-xs">Profile</span>
-                </button>
-            </div>
         </div>
-    </div>
 
-    <!-- Profile Page -->
-    <div class="device-frame">
-        <div class="h-full overflow-y-auto bg-white">
-            <!-- Header -->
-            <div class="px-6 pt-8 pb-6 flex items-center">
-                <div class="flex items-center gap-4">
+        <!-- Events Screen -->
+        <div class="screen" id="events-screen">
+            <div class="h-full overflow-y-auto bg-white">
+                <!-- Header -->
+                <div class="px-6 pt-8 pb-6 flex items-center">
                     <button class="rounded-full w-10 h-10 flex items-center justify-center bg-white shadow">
                         <i class="fas fa-arrow-left"></i>
                     </button>
-                    <h1 class="font-semibold">Profile</h1>
+                    <span class="font-semibold ml-4">Events</span>
                 </div>
-            </div>
 
-            <!-- Profile Content -->
-            <div class="px-6">
-                <div class="space-y-6">
-                    <!-- Profile Info -->
-                    <div class="flex flex-col items-center text-center">
-                        <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop" class="w-24 h-24 rounded-full" alt="Profile">
-                            <button class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-pink-500 text-white flex items-center justify-center shadow-lg">
-                                <i class="fas fa-camera"></i>
-                            </button>
+                <!-- Event Content -->
+                <div class="px-6">
+                    <div class="space-y-6">
+                        <!-- Hero Image -->
+                        <div class="relative -mx-6 h-48">
+                            <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800&h=400&fit=crop" class="w-full h-full object-cover" alt="Birthday party decorations">
                         </div>
-                        <h2 class="text-xl font-bold mt-4">Emma Wilson</h2>
-                        <p class="text-gray-500">Mother of two amazing kids 👶👧</p>
-                        <p class="text-gray-500">San Francisco, CA</p>
-                        <button class="mt-4 px-6 py-2 border border-gray-300 rounded-full text-sm font-medium hover:bg-gray-50 transition-colors">
-                            Edit Profile
+
+                        <div class="pt-6">
+                            <h1 class="text-3xl font-bold mb-2">Sophie's 5th Birthday Party</h1>
+                            <p class="text-gray-600">Hosted by Sarah Johnson</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center">
+                                    <i class="far fa-calendar text-pink-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Saturday, July 15th</p>
+                                    <p class="text-gray-500">2:00 PM - 5:00 PM</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Sunshine Party Center</p>
+                                    <p class="text-gray-500">123 Rainbow Lane, Springfield</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="w-full bg-pink-500 text-white py-4 rounded-2xl font-semibold text-lg">
+                            RSVP Now
                         </button>
-                    </div>
 
-                    <!-- Stats -->
-                    <div class="grid grid-cols-3 gap-4 py-4">
-                        <div class="text-center">
-                            <p class="font-bold">245</p>
-                            <p class="text-sm text-gray-500">Posts</p>
+                        <div>
+                            <h3 class="font-semibold mb-3">About the Event</h3>
+                            <p class="text-gray-600">Join us for a magical princess-themed celebration! We'll have face painting, balloon artists, cake decorating, and lots of fun games. All parents are welcome to stay and join the festivities.</p>
                         </div>
-                        <div class="text-center">
-                            <p class="font-bold">15.3K</p>
-                            <p class="text-sm text-gray-500">Followers</p>
-                        </div>
-                        <div class="text-center">
-                            <p class="font-bold">1.2K</p>
-                            <p class="text-sm text-gray-500">Following</p>
-                        </div>
-                    </div>
 
-                    <!-- Tabs -->
-                    <div class="border-b">
-                        <div class="flex">
-                            <button class="flex-1 py-4 text-pink-500 border-b-2 border-pink-500 font-semibold">Posts</button>
-                            <button class="flex-1 py-4 text-gray-500">Events</button>
-                            <button class="flex-1 py-4 text-gray-500">Saved</button>
+                        <!-- Activity Preview -->
+                        <div>
+                            <h3 class="font-semibold mb-3">What to Expect</h3>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="relative rounded-xl overflow-hidden h-24">
+                                    <img src="https://images.unsplash.com/photo-1576344333162-f83e5e18902e?w=300&h=200&fit=crop" class="w-full h-full object-cover" alt="Face painting">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-2">
+                                        <span class="text-white text-sm font-medium">Face Painting</span>
+                                    </div>
+                                </div>
+                                <div class="relative rounded-xl overflow-hidden h-24">
+                                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300&h=200&fit=crop" class="w-full h-full object-cover" alt="Balloon art">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-2">
+                                        <span class="text-white text-sm font-medium">Balloon Art</span>
+                                    </div>
+                                </div>
+                                <div class="relative rounded-xl overflow-hidden h-24">
+                                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=300&h=200&fit=crop" class="w-full h-full object-cover" alt="Princess cake">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-2">
+                                        <span class="text-white text-sm font-medium">Birthday Cake</span>
+                                    </div>
+                                </div>
+                                <div class="relative rounded-xl overflow-hidden h-24">
+                                    <img src="https://images.unsplash.com/photo-1502035618526-6b2f1f5bca1b?w=300&h=200&fit=crop" class="w-full h-full object-cover" alt="Party games">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-2">
+                                        <span class="text-white text-sm font-medium">Party Games</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Posts Grid -->
-                    <div class="grid grid-cols-3 gap-1">
-                        <img src="https://images.unsplash.com/photo-1600965962102-9d260a71890d?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
-                        <img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
-                        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
-                        <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
-                        <img src="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
-                        <img src="https://images.unsplash.com/photo-1496440737103-cd596325d314?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
+                        <div>
+                            <h3 class="font-semibold mb-3">Gift Ideas</h3>
+                            <div class="bg-gray-50 rounded-xl p-4">
+                                <p class="text-gray-600 mb-2">Sophie loves:</p>
+                                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                    <li>Art supplies and craft kits</li>
+                                    <li>Princess-themed toys and dress-up items</li>
+                                    <li>Children's books (especially fairy tales)</li>
+                                    <li>Educational games and puzzles</li>
+                                </ul>
+                                <p class="text-sm text-gray-500 mt-3">Note: Gift-giving is optional! Your presence is the best present.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold mb-3">Important Notes</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center">
+                                        <i class="fas fa-utensils text-green-500"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Dietary Options Available</p>
+                                        <p class="text-sm text-gray-500">Gluten-free and nut-free options will be served</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center">
+                                        <i class="fas fa-camera text-purple-500"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Photography</p>
+                                        <p class="text-sm text-gray-500">Professional photographer will be present</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center">
+                                        <i class="fas fa-tshirt text-yellow-500"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Dress Code</p>
+                                        <p class="text-sm text-gray-500">Princess/fairy tale themed attire encouraged!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold mb-3">Attending Parents</h3>
+                            <div class="flex -space-x-2">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop" class="w-8 h-8 rounded-full border-2 border-white" alt="Attendee">
+                                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&h=80&fit=crop" class="w-8 h-8 rounded-full border-2 border-white" alt="Attendee">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop" class="w-8 h-8 rounded-full border-2 border-white" alt="Attendee">
+                                <div class="w-8 h-8 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs">+12</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- Bottom Navigation -->
-            <div class="bottom-nav">
-                <button class="nav-item">
-                    <i class="fas fa-home text-xl"></i>
-                    <span class="text-xs">Home</span>
-                </button>
-                <button class="nav-item">
-                    <i class="far fa-calendar text-xl"></i>
-                    <span class="text-xs">Events</span>
-                </button>
-                <button class="nav-item">
-                    <i class="fas fa-plus-circle text-xl"></i>
-                    <span class="text-xs">Post</span>
-                </button>
-                <button class="nav-item active">
-                    <i class="far fa-user text-xl"></i>
-                    <span class="text-xs">Profile</span>
-                </button>
             </div>
         </div>
+
+        <!-- Create Post Screen -->
+        <div class="screen" id="post-screen">
+            <div class="h-full overflow-y-auto bg-white">
+                <!-- Header -->
+                <div class="px-6 pt-8 pb-6 flex items-center">
+                    <button class="rounded-full w-10 h-10 flex items-center justify-center bg-white shadow">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <span class="font-semibold ml-4">Create Post</span>
+                </div>
+
+                <!-- Post Content -->
+                <div class="px-6">
+                    <div class="space-y-6">
+                        <!-- User Info -->
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop" class="w-10 h-10 rounded-full" alt="Profile">
+                            <div>
+                                <h3 class="font-semibold">Emma Wilson</h3>
+                                <p class="text-sm text-gray-500">Public post</p>
+                            </div>
+                        </div>
+
+                        <!-- Text Input -->
+                        <div class="space-y-4">
+                            <textarea class="w-full h-32 p-4 rounded-xl bg-gray-50 resize-none text-gray-700" placeholder="What's on your mind?"></textarea>
+                            
+                            <!-- Action Buttons -->
+                            <div class="grid grid-cols-3 gap-3">
+                                <button class="aspect-square rounded-xl bg-gray-50 flex flex-col items-center justify-center gap-2 p-4">
+                                    <i class="fas fa-image text-pink-500 text-xl"></i>
+                                    <span class="text-sm text-gray-600">Add Photos</span>
+                                </button>
+                                <button class="aspect-square rounded-xl bg-gray-50 flex flex-col items-center justify-center gap-2 p-4">
+                                    <i class="fas fa-video text-pink-500 text-xl"></i>
+                                    <span class="text-sm text-gray-600">Add Video</span>
+                                </button>
+                                <button class="aspect-square rounded-xl bg-gray-50 flex flex-col items-center justify-center gap-2 p-4">
+                                    <i class="fas fa-map-marker-alt text-pink-500 text-xl"></i>
+                                    <span class="text-sm text-gray-600">Location</span>
+                                </button>
+                            </div>
+
+                            <!-- Selected Media Preview -->
+                            <div class="border-2 border-dashed border-gray-200 rounded-xl p-4 hidden">
+                                <div class="grid grid-cols-3 gap-2">
+                                    <!-- Media previews will be added here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post Button -->
+                        <button class="w-full bg-pink-500 text-white py-4 rounded-2xl font-semibold text-lg">
+                            Post
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Screen -->
+        <div class="screen" id="profile-screen">
+            <div class="h-full overflow-y-auto bg-white">
+                <!-- Header -->
+                <div class="px-6 pt-8 pb-6 flex items-center">
+                    <div class="flex items-center gap-4">
+                        <button class="rounded-full w-10 h-10 flex items-center justify-center bg-white shadow">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <h1 class="font-semibold">Profile</h1>
+                    </div>
+                </div>
+
+                <!-- Profile Content -->
+                <div class="px-6">
+                    <div class="space-y-6">
+                        <!-- Profile Info -->
+                        <div class="flex flex-col items-center text-center">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop" class="w-24 h-24 rounded-full" alt="Profile">
+                                <button class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-pink-500 text-white flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                            </div>
+                            <h2 class="text-xl font-bold mt-4">Emma Wilson</h2>
+                            <p class="text-gray-500">Mother of two amazing kids 👶👧</p>
+                            <p class="text-gray-500">San Francisco, CA</p>
+                            <button class="mt-4 px-6 py-2 border border-gray-300 rounded-full text-sm font-medium hover:bg-gray-50 transition-colors">
+                                Edit Profile
+                            </button>
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="grid grid-cols-3 gap-4 py-4">
+                            <div class="text-center">
+                                <p class="font-bold">245</p>
+                                <p class="text-sm text-gray-500">Posts</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="font-bold">15.3K</p>
+                                <p class="text-sm text-gray-500">Followers</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="font-bold">1.2K</p>
+                                <p class="text-sm text-gray-500">Following</p>
+                            </div>
+                        </div>
+
+                        <!-- Tabs -->
+                        <div class="border-b">
+                            <div class="flex">
+                                <button class="flex-1 py-4 text-pink-500 border-b-2 border-pink-500 font-semibold">Posts</button>
+                                <button class="flex-1 py-4 text-gray-500">Events</button>
+                                <button class="flex-1 py-4 text-gray-500">Saved</button>
+                            </div>
+                        </div>
+
+                        <!-- Posts Grid -->
+                        <div class="grid grid-cols-3 gap-1">
+                            <img src="https://images.unsplash.com/photo-1600965962102-9d260a71890d?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
+                            <img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
+                            <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
+                            <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
+                            <img src="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
+                            <img src="https://images.unsplash.com/photo-1496440737103-cd596325d314?w=300&h=300&fit=crop" class="w-full aspect-square object-cover" alt="Post">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <button class="nav-item active" data-screen="home-screen">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs">Home</span>
+            </button>
+            <button class="nav-item" data-screen="events-screen">
+                <i class="far fa-calendar text-xl"></i>
+                <span class="text-xs">Events</span>
+            </button>
+            <button class="nav-item" data-screen="post-screen">
+                <i class="fas fa-plus-circle text-xl"></i>
+                <span class="text-xs">Post</span>
+            </button>
+            <button class="nav-item" data-screen="profile-screen">
+                <i class="far fa-user text-xl"></i>
+                <span class="text-xs">Profile</span>
+            </button>
+        </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const screens = document.querySelectorAll('.screen');
+            const navItems = document.querySelectorAll('.nav-item');
+
+            function switchScreen(screenId) {
+                // Remove active class from all screens and nav items
+                screens.forEach(screen => screen.classList.remove('active'));
+                navItems.forEach(item => item.classList.remove('active'));
+
+                // Add active class to selected screen and nav item
+                document.getElementById(screenId).classList.add('active');
+                document.querySelector(`[data-screen="${screenId}"]`).classList.add('active');
+            }
+
+            // Add click event listeners to navigation items
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const screenId = this.getAttribute('data-screen');
+                    switchScreen(screenId);
+                });
+            });
+
+            // Add click event listeners to all back buttons
+            const backButtons = document.querySelectorAll('.fa-arrow-left').forEach(icon => {
+                icon.closest('button').addEventListener('click', function() {
+                    switchScreen('home-screen');
+                });
+            });
+        });
+    </script>
 </body>
 </html> 
